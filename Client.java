@@ -59,7 +59,14 @@ public class Client
                 			break;
                 	   } 
         	  		break;
-        	  	case 5:System.out.println(re.readLine());    	
+        	  	case 5:
+        	  		while((line = re.readLine()) != null) {     		  
+         		   if(line.equals("EXIT") == false) {
+          			  System.out.println(line);    
+             		   }
+             		   else
+             			break;
+             	   }  	
         	  		break;
         	  	case 6:
         	  		while((line = re.readLine()) != null) {     		  
@@ -72,8 +79,7 @@ public class Client
         	  		break;
         	  		//if wrong entry lets u go again
         	  	default: System.out.println("Not a valid option chooose between 1 and 7:");    
-        	  		break;
-        	  		
+        	  		break;		
         	  }      
         	  //re entry to be able to keep choosing options
         	  option = scan2.nextInt();
