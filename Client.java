@@ -77,6 +77,9 @@ public class Client
                   			break;
          	  		}
         	  		break;
+              case 7: 
+                sock.close();
+                break;
         	  		//if wrong entry lets u go again
         	  	default: System.out.println("Not a valid option chooose between 1 and 7:");    
         	  		break;		
