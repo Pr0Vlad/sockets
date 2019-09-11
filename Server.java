@@ -1,9 +1,7 @@
 package networks;
-
 //Java implementation of  Server side 
 //It contains two classes : Server and ClientHandler 
 //Save file as Server.java 
-
 import java.io.*;
 import java.lang.StringBuilder;
 import java.lang.management.ManagementFactory;
@@ -13,7 +11,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*; 
 import java.net.*; 
-
 //Server class 
 public class Server  
 { 
@@ -81,9 +78,7 @@ public class Server
     					break;
     				case 4:	
     					//sending a string with netstat to client
-    					Runtime rt = Runtime.getRuntime();
-    					String[] command = {"netstat"};
-    					Process p = rt.exec(command);
+    					Process p = Runtime.getRuntime().exec("netstat");
     					output = new StringBuilder();
     					BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
     					// Read the output from the command
@@ -110,13 +105,11 @@ public class Server
     			        while((v = r.readLine()) != null)  {
     			            output2.append("process " + v + " \n");
     			        }   
-    			        output.append("EXIT\n");
+    			        output2.append("EXIT\n");
     					re.write(output2.toString());    						
     						re.flush();
-    					break;
-    					
+    					break;				
     				case 7:	re.write("chose: " + ch1 + " \n");    						
-    						ch1 = 7;
     						re.flush();
     					break;    				    					
     			}    				//lets u keep choosing values over and over	
