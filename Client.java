@@ -15,7 +15,7 @@ public class Client
     	//scanner for input 
     	 Scanner scan2 = new Scanner(System.in);
     	 //connecting to server
-         InetAddress ip = InetAddress.getByName("localhost"); 
+         InetAddress ip = InetAddress.getByName("192.168.101.101"); 
          Socket sock = new Socket(ip, 4142); 
          //trying this after connecting
     	try
