@@ -78,10 +78,11 @@ public class Server
     					break;
     				case 4:	
     					//sending a string with netstat to client
-    					Process p = Runtime.getRuntime().exec("netstat");
+    					Process p = Runtime.getRuntime().exec("netstat -natu | grep 'ESTABLISHED");
     					output = new StringBuilder();
-    					BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
     					// Read the output from the command
+    					p.waitFor();
+    					BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
     					String s = null;
     					while ((s = stdInput.readLine()) != null) {   				 	
     						output.append("netstat command "+ s + " \n");			   
@@ -93,13 +94,25 @@ public class Server
     				case 5:	
     					//not done yet to get connected users but 
     					//uses linux command who
-    					re.write("chose: " + ch1 + " \n");  						
-    						re.flush();
-    					break;
+    					Process pr = Runtime.getRuntime().exec("who");
+     			       output = new StringBuilder();
+     			       
+     			       pr.waitFor();
+     			       BufferedReader rs = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+     			       String vs = null;
+     			        while((vs = rs.readLine()) != null)  {
+     			            output.append("process " + vs + " \n");
+     			        }   
+     			        output.append("EXIT\n");
+     					re.write(output.toString());    						
+     						re.flush();
+     					break;		
     				case 6:	
     					//not sure if this works but should send a string of linux processes to the client need to test on linux
     					Process process = Runtime.getRuntime().exec("ps -e -o command");
     			       output2 = new StringBuilder();
+    			       
+    			       process.waitFor();
     			       BufferedReader r = new BufferedReader(new InputStreamReader(process.getInputStream()));
     			       String v = null;
     			        while((v = r.readLine()) != null)  {
