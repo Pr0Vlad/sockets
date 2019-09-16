@@ -11,17 +11,23 @@ import java.net.*;
 //Client class 
 public class Client1 implements Runnable {
 	static int choice;
-
+	static int ttime;
 	Client1(int choice) {
 		this.choice = choice;
+		
+	}
+	Client1(int choice, int ttime){
+		this.choice = choice;
+		this.ttime = ttime;
 	}
 
 	public static void main(String[] args) throws IOException {
 
 		// scanner for input
 		Scanner scan2 = new Scanner(System.in);
+		
 		do {
-
+			int ttime = 0;
 			System.out.println("1: Host current Date and Time \n" + "2: Host Uptime \n" + "3: Host memory use \n"
 					+ "4: Host Netstat \n" + "5: Host current users \n" + "6: Host running processes \n"
 					+ "7: Quit \n");
@@ -33,12 +39,13 @@ public class Client1 implements Runnable {
 			Thread client[] = new Thread[numClients];
 			for (int i = 0; i < numClients; i++) {
 
-				Client1 clients = new Client1(choice);
+				Client1 clients = new Client1(choice, ttime);
 				client[i] = new Thread(clients);
 			}
 			for (int j = 0; j < numClients; j++) {
 				client[j].start();
 			}
+			System.out.println(ttime + "milli ");
 		} while (choice != 7);
 
 	}
@@ -46,7 +53,7 @@ public class Client1 implements Runnable {
 	@Override
 	public void run() {
 		try {
-			InetAddress ip = InetAddress.getByName("192.168.101.101");
+			InetAddress ip = InetAddress.getByName("localhost");
 			Socket sock = new Socket(ip, 4144);
 
 			long time = System.currentTimeMillis();
@@ -69,17 +76,19 @@ public class Client1 implements Runnable {
 				System.out.println(re.readLine());
 				
 				 end = System.currentTimeMillis();
-				System.out.println(end - time + " time ");
+				ttime += end - time ;
+			
+				
 				break;
 			case 2:
 				System.out.println(re.readLine());
 				 end = System.currentTimeMillis();
-				System.out.println(end - time + " time ");
+				 ttime += end - time ;
 				break;
 			case 3:
 				System.out.println(re.readLine());
 				 end = System.currentTimeMillis();
-				System.out.println(end - time + " time ");
+				 ttime += end - time ;
 				break;
 			case 4:
 				while ((line = re.readLine()) != null) {
@@ -89,7 +98,7 @@ public class Client1 implements Runnable {
 						break;
 				}
 				 end = System.currentTimeMillis();
-				System.out.println(end - time + " time ");
+				 ttime += end - time ;
 				break;
 			case 5:
 				while ((line = re.readLine()) != null) {
@@ -99,7 +108,7 @@ public class Client1 implements Runnable {
 						break;
 				}
 				end = System.currentTimeMillis();
-				System.out.println(end - time + " time ");
+				ttime += end - time ;
 				break;
 			case 6:
 				while ((line = re.readLine()) != null) {
@@ -109,12 +118,12 @@ public class Client1 implements Runnable {
 						break;
 				}
 				 end = System.currentTimeMillis();
-				System.out.println(end - time + " time ");
+				 ttime += end - time ;
 				break;
 			case 7:
 				sock.close();
 				 end = System.currentTimeMillis();
-				System.out.println(end - time + " time ");
+				 ttime += end - time ;
 				break;
 			// if wrong entry lets u go again
 			}
