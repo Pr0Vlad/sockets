@@ -53,7 +53,7 @@ public class Client1 implements Runnable {
 	@Override
 	public void run() {
 		try {
-			InetAddress ip = InetAddress.getByName("localhost");
+			InetAddress ip = InetAddress.getByName("192.168.101.101");
 			Socket sock = new Socket(ip, 4144);
 
 			long time = System.currentTimeMillis();
