@@ -18,7 +18,7 @@ public class Server2
 { 
 public static void main(String[] args) throws IOException{  	 	 
 	 //making the socket a client can connect to
-	 ServerSocket socket = new ServerSocket(4144);
+	 ServerSocket socket = new ServerSocket(4145);
    Socket sock = null;
    Runtime runtime = Runtime.getRuntime();
    //string builders for netstat and other choices selected
@@ -34,8 +34,8 @@ public static void main(String[] args) throws IOException{
   		 sock = socket.accept(); 
   		 BufferedWriter re = new BufferedWriter(new OutputStreamWriter(sock.getOutputStream()));
   		//writes to the client
-  		 re.write("connected to: " + sock + "\n" );
-  		re.flush();
+  		// re.write("connected to: " + sock + "\n" );
+  		//re.flush();
   		//reads from the client
   		 InputStreamReader in = new InputStreamReader(sock.getInputStream());
   		BufferedReader bf = new BufferedReader(in);
