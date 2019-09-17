@@ -22,10 +22,8 @@ public class Client1 implements Runnable {
 	}
 
 	public static void main(String[] args) throws IOException {
-
 		// scanner for input
 		Scanner scan2 = new Scanner(System.in);
-		
 		do {
 			int ttime = 0;
 			System.out.println("1: Host current Date and Time \n" + "2: Host Uptime \n" + "3: Host memory use \n"
@@ -54,20 +52,14 @@ public class Client1 implements Runnable {
 			}
 			System.out.println(ttime + "milli ");
 		} while (choice != 7);
-
 	}
-
-	
-	
 	@Override
 	public void run() {
 		try {
 			InetAddress ip = InetAddress.getByName("192.168.101.101");
 			Socket sock = new Socket(ip, 4144);
-
 			long time = System.currentTimeMillis();
 			long end;
-			
 			System.out.println(time);
 			// reader and writer to communicate with server
 			BufferedReader re = new BufferedReader(new InputStreamReader(sock.getInputStream()));
@@ -75,7 +67,6 @@ public class Client1 implements Runnable {
 			// reading from server
 			send.println(choice + "\n");
 			send.flush();
-
 			System.out.println(re.readLine());
 			// loop to keep selecting options as long as 7 is not pressed
 			String line = new String();
@@ -83,11 +74,8 @@ public class Client1 implements Runnable {
 			switch (choice) {
 			case 1:
 				System.out.println(re.readLine());
-				
 				 end = System.currentTimeMillis();
 				ttime += end - time ;
-			
-				
 				break;
 			case 2:
 				System.out.println(re.readLine());
