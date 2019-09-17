@@ -45,11 +45,20 @@ public class Client1 implements Runnable {
 			for (int j = 0; j < numClients; j++) {
 				client[j].start();
 			}
+			for (int k = 0; k < numClients; k++) {
+				try{
+					client[k].join();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 			System.out.println(ttime + "milli ");
 		} while (choice != 7);
 
 	}
 
+	
+	
 	@Override
 	public void run() {
 		try {
