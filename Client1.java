@@ -26,6 +26,7 @@ public class Client1 implements Runnable {
 		// scanner for input
 		Scanner scan2 = new Scanner(System.in);
 		do {
+			ttime = 0;
 			ttime2 = 0;
 			System.out.println("1: Host current Date and Time \n" + "2: Host Uptime \n" + "3: Host memory use \n"
 					+ "4: Host Netstat \n" + "5: Host current users \n" + "6: Host running processes \n"
