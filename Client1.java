@@ -56,7 +56,7 @@ public class Client1 implements Runnable {
 	}
 	
 	public void setT (int ttime) {
-		this.ttime2 += ttime;
+		ttime2 += ttime;
 	}
 	
 	@Override
