@@ -31,10 +31,40 @@ public class Client1 implements Runnable {
 			System.out.println("1: Host current Date and Time \n" + "2: Host Uptime \n" + "3: Host memory use \n"
 					+ "4: Host Netstat \n" + "5: Host current users \n" + "6: Host running processes \n"
 					+ "7: Quit \n");
-			int choice = scan2.nextInt();
+			
+			choice = 0;
+			String input;
+			 
+			while(true) {
+			try {
+		            input = scan2.nextLine();
+		            choice = Integer.parseInt(input);
+		            while(choice >7 || choice <1) {
+						System.out.println("Wrong input try entering a number between 1 and 7: ");
+						choice = scan2.nextInt();
+					}
+		            break;
+		            
+		        } catch (NumberFormatException e) {
+		            System.out.println("Please Enter An Integer");  
+		        }
+			}
+			
 
 			System.out.println("enter the amount of clients to have: ");
-			int numClients = scan2.nextInt();
+			int numClients = 0;
+			String input2;
+			
+			while(true) {
+				try {
+			            input2 = scan2.nextLine();
+			            choice = Integer.parseInt(input2);
+			            break;
+			            
+			        } catch (NumberFormatException e) {
+			            System.out.println("Please Enter An Integer");  
+			        }
+				}
 
 			Thread client[] = new Thread[numClients];
 			for (int i = 0; i < numClients; i++) {
