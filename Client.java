@@ -129,8 +129,8 @@ public class Client implements Runnable {
 					 end = System.currentTimeMillis();
 						 ttime += end - time ;
 						 this.setT(ttime);
+						 break;
 					}	
-						break;
 				}
 				
 				break;
@@ -142,8 +142,8 @@ public class Client implements Runnable {
 					 end = System.currentTimeMillis();
 						 ttime += end - time ;
 						 this.setT(ttime);
+						 break;
 					}	
-						break;
 				}
 				break;
 			case 6:
@@ -155,8 +155,8 @@ public class Client implements Runnable {
 					 end = System.currentTimeMillis();
 						 ttime += end - time ;
 						 this.setT(ttime);
+						 break;
 					}	
-						break;
 				}
 				
 				break;
