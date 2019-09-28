@@ -9,15 +9,15 @@ import java.util.Scanner;
 import java.net.*;
 
 //Client class 
-public class Client implements Runnable {
+public class client implements Runnable {
 	static int choice;
 	static int ttime = 0;
 	static int ttime2 = 0;
-	Client(int choice) {
+	client(int choice) {
 		this.choice = choice;
 		
 	}
-	Client(int choice, int ttime){
+	client(int choice, int ttime){
 		this.choice = choice;
 		this.ttime = ttime;
 	}
@@ -42,6 +42,7 @@ public class Client implements Runnable {
 		            while(choice >7 || choice <1) {
 						System.out.println("Wrong input try entering a number between 1 and 7: ");
 						choice = scan2.nextInt();
+						
 					}
 		            break;
 		            
@@ -50,26 +51,37 @@ public class Client implements Runnable {
 		        }
 			}
 			
-
-			System.out.println("enter the amount of clients to have: ");
 			int numClients = 0;
 			String input2;
 			
+			if(choice != 7) {
+				System.out.println("enter the amount of clients to have: ");
 			while(true) {
 				try {
 			            input2 = scan2.nextLine();
 			            numClients = Integer.parseInt(input2);
+			            
+			            while(numClients >100 || numClients <1) {
+							System.out.println("Wrong input try entering a number between 0 and 100: ");
+							numClients = scan2.nextInt();
+							
+						}
+			            
 			            break;
 			            
 			        } catch (NumberFormatException e) {
 			            System.out.println("Please Enter An Integer");  
 			        }
 				}
+			}else {
+				numClients = 1;
+			}
+			
 
 			Thread client[] = new Thread[numClients];
 			for (int i = 0; i < numClients; i++) {
 
-				Client clients = new Client(choice, ttime);
+				client clients = new client(choice, ttime);
 				client[i] = new Thread(clients);
 			}
 			for (int j = 0; j < numClients; j++) {
@@ -124,6 +136,7 @@ public class Client implements Runnable {
 			case 4:
 				while ((line = re.readLine()) != null) {
 					if (line.equals("EXIT") == false) {
+						
 						System.out.println(line);  
 					} else{
 					 end = System.currentTimeMillis();
@@ -131,22 +144,11 @@ public class Client implements Runnable {
 						 this.setT(ttime);
 						 break;
 					}	
+						
 				}
 				
 				break;
 			case 5:
-				while ((line = re.readLine()) != null) {
-					if (line.equals("EXIT") == false) {
-						System.out.println(line);  
-					}else{
-					 end = System.currentTimeMillis();
-						 ttime += end - time ;
-						 this.setT(ttime);
-						 break;
-					}	
-				}
-				break;
-			case 6:
 				while ((line = re.readLine()) != null) {
 					if (line.equals("EXIT") == false) {
 						 
@@ -157,6 +159,21 @@ public class Client implements Runnable {
 						 this.setT(ttime);
 						 break;
 					}	
+						
+				}
+				break;
+			case 6:
+				while ((line = re.readLine()) != null) {
+					if (line.equals("EXIT") == false) {
+						
+						System.out.println(line);  
+					} else{
+					 end = System.currentTimeMillis();
+						 ttime += end - time ;
+						 this.setT(ttime);
+						 break;
+					}	
+						
 				}
 				
 				break;
