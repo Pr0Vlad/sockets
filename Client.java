@@ -124,35 +124,37 @@ public class Client implements Runnable {
 			case 4:
 				while ((line = re.readLine()) != null) {
 					if (line.equals("EXIT") == false) {
+						 end = System.currentTimeMillis();
+						 ttime += end - time ;
+						 this.setT(ttime);
 						System.out.println(line);  
 					} else
 						break;
 				}
-				 end = System.currentTimeMillis();
-				 ttime += end - time ;
-				 this.setT(ttime);
+				
 				break;
 			case 5:
 				while ((line = re.readLine()) != null) {
 					if (line.equals("EXIT") == false) {
+						 end = System.currentTimeMillis();
+						 ttime += end - time ;
+						 this.setT(ttime);
 						System.out.println(line);  
 					} else
 						break;
 				}
-				end = System.currentTimeMillis();
-				ttime += end - time ;
-				this.setT(ttime);
 				break;
 			case 6:
 				while ((line = re.readLine()) != null) {
 					if (line.equals("EXIT") == false) {
+						 end = System.currentTimeMillis();
+						 ttime += end - time ;
+						 this.setT(ttime);
 						System.out.println(line);  
 					} else
 						break;
 				}
-				 end = System.currentTimeMillis();
-				 ttime += end - time ;
-				 this.setT(ttime);
+				
 				break;
 			case 7:
 				sock.close();
