@@ -13,7 +13,7 @@ public class Client implements Runnable {
 	static int choice;
 	static int ttime = 0;
 	static int ttime2 = 0;
-	Client1(int choice) {
+	Client(int choice) {
 		this.choice = choice;
 		
 	}
@@ -69,7 +69,7 @@ public class Client implements Runnable {
 			Thread client[] = new Thread[numClients];
 			for (int i = 0; i < numClients; i++) {
 
-				Client1 clients = new Client1(choice, ttime);
+				Client clients = new Client(choice, ttime);
 				client[i] = new Thread(clients);
 			}
 			for (int j = 0; j < numClients; j++) {
