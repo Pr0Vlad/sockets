@@ -9,7 +9,7 @@ import java.util.Scanner;
 import java.net.*;
 
 //Client class 
-public class Client1 implements Runnable {
+public class Client implements Runnable {
 	static int choice;
 	static int ttime = 0;
 	static int ttime2 = 0;
@@ -17,7 +17,7 @@ public class Client1 implements Runnable {
 		this.choice = choice;
 		
 	}
-	Client1(int choice, int ttime){
+	Client(int choice, int ttime){
 		this.choice = choice;
 		this.ttime = ttime;
 	}
