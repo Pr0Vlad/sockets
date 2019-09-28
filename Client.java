@@ -124,11 +124,12 @@ public class Client implements Runnable {
 			case 4:
 				while ((line = re.readLine()) != null) {
 					if (line.equals("EXIT") == false) {
-						 end = System.currentTimeMillis();
+						System.out.println(line);  
+					} else{
+					 end = System.currentTimeMillis();
 						 ttime += end - time ;
 						 this.setT(ttime);
-						System.out.println(line);  
-					} else
+					}	
 						break;
 				}
 				
@@ -136,22 +137,25 @@ public class Client implements Runnable {
 			case 5:
 				while ((line = re.readLine()) != null) {
 					if (line.equals("EXIT") == false) {
-						 end = System.currentTimeMillis();
+						System.out.println(line);  
+					}else{
+					 end = System.currentTimeMillis();
 						 ttime += end - time ;
 						 this.setT(ttime);
-						System.out.println(line);  
-					} else
+					}	
 						break;
 				}
 				break;
 			case 6:
 				while ((line = re.readLine()) != null) {
 					if (line.equals("EXIT") == false) {
-						 end = System.currentTimeMillis();
+						 
+						System.out.println(line);  
+					} else{
+					 end = System.currentTimeMillis();
 						 ttime += end - time ;
 						 this.setT(ttime);
-						System.out.println(line);  
-					} else
+					}	
 						break;
 				}
 				
