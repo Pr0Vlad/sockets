@@ -11,7 +11,7 @@ import java.net.*;
 //Client class 
 public class Client1 implements Runnable {
 	static int choice;
-	static int ttime;
+	static int ttime = 0;
 	static int ttime2 = 0;
 	Client1(int choice) {
 		this.choice = choice;
