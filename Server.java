@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*; 
 import java.net.*; 
 //Server class 
-public class Server2  
+public class Server 
 { 
 public static void main(String[] args) throws IOException{  	 	 
 	 //making the socket a client can connect to
