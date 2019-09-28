@@ -82,7 +82,7 @@ public class Client1 implements Runnable {
 					e.printStackTrace();
 				}
 			}
-			System.out.println(ttime2/choice + " milli ");
+			System.out.println(ttime2/numClients + " milli ");
 		} while (choice != 7);
 	}
 	
