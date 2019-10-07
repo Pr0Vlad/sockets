@@ -17,32 +17,21 @@ public class ServerThreaded implements Runnable{
     private InputStreamReader in;
     private BufferedReader bf;
     private Runtime runtime;
+    private StringBuilder output;
+    private int ch1;
+    private DateTimeFormatter dtf;
 
-    public ServerThreaded(Socket sock) {
-        this.sock = sock;
-    }
-    public ServerThreaded(Socket sock, BufferedWriter re) {
-        this.sock = sock;
-        this.re = re;
-    }
-    public ServerThreaded(Socket sock, BufferedWriter re, InputStreamReader in) {
-        this.sock = sock;
-        this.re = re;
-        this.in = in;
-    }
-    public ServerThreaded(Socket sock, BufferedWriter re, InputStreamReader in, BufferedReader bf) {
-        this.sock = sock;
-        this.re = re;
-        this.in = in;
-        this.bf=bf;
-    }
 
-    public ServerThreaded(Socket sock, BufferedWriter re, InputStreamReader in, BufferedReader bf, Runtime runtime) {
+    public ServerThreaded(Socket sock, BufferedWriter re, InputStreamReader in, BufferedReader bf, Runtime runtime, StringBuilder output, int ch1, DateTimeFormatter dtf) {
         this.sock = sock;
         this.re = re;
         this.in = in;
         this.bf=bf;
         this.runtime=runtime;
+        this.output = output;
+        this.ch1 = ch1;
+        this.dtf = dtf;
+
     }
 
     public static void main(String[] args) throws IOException{
@@ -50,38 +39,33 @@ public class ServerThreaded implements Runnable{
         ServerSocket socket = new ServerSocket(4146);
         Socket sock = null;
         Runtime runtime = Runtime.getRuntime();
-
+        StringBuilder output = null;
+        int ch1=0;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         try {
-            //accepts connection
+        	
             while(true) {
-                sock = socket.accept();
+            	
+            	sock = socket.accept();
                 BufferedWriter re = new BufferedWriter(new OutputStreamWriter(sock.getOutputStream()));
                 InputStreamReader in = new InputStreamReader(sock.getInputStream());
                 BufferedReader bf = new BufferedReader(in);
-
-                ServerThreaded clients = new ServerThreaded(sock, re, in, bf, runtime);
+                ch1 = Character.getNumericValue(bf.read());
+                
+                ServerThreaded clients = new ServerThreaded(sock, re, in, bf, runtime, output, ch1, dtf);
                 Thread client = new Thread(clients);
                 client.start();
+                   
             }
+            
         }
         catch (Exception e){
             e.printStackTrace();
         }
     }
-
     @Override
     public void run() {
-        StringBuilder output = null;
-        StringBuilder output2 = null;
-        int ch1=0;
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        try {
-            ch1 = Character.getNumericValue(bf.read());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
+        
         switch(ch1) {
             //cases for appropriate inputs
             case 1:
@@ -207,7 +191,7 @@ public class ServerThreaded implements Runnable{
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                output2 = new StringBuilder();
+                output = new StringBuilder();
 
                 try {
                     process.waitFor();
@@ -222,11 +206,11 @@ public class ServerThreaded implements Runnable{
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    output2.append("process " + v + " \n");
+                    output.append("process " + v + " \n");
                 }
-                output2.append("EXIT\n");
+                output.append("EXIT\n");
                 try {
-                    re.write(output2.toString());
+                    re.write(output.toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -249,10 +233,13 @@ public class ServerThreaded implements Runnable{
                 }
                 break;
         }
-        try {
-            sock.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    
+            try {
+				sock.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        
     }
 }
