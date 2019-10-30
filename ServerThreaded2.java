@@ -99,9 +99,32 @@ public class ServerThreaded2 implements Runnable{
                 }
                 break;
             case 3:
-                long memory = runtime.totalMemory() - runtime.freeMemory();
+                 Process p = null;
                 try {
-                    re.write("memory usage: " + memory/(1024*1024) + " megabytes \n");
+                    p = Runtime.getRuntime().exec("free");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                output = new StringBuilder();
+                // Read the output from the command
+                try {
+                    p.waitFor();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                String s = null;
+                while (true) {
+                    try {
+                        if (!((s = stdInput.readLine()) != null)) break;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    output.append(s + " \n");
+                }
+                output.append("EXIT\n");
+                try {
+                    re.write(output.toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
