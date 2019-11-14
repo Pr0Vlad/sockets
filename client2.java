@@ -99,18 +99,18 @@ public class client2 implements Runnable {
     public void run() {
         try {
             InetAddress ip = InetAddress.getByName("192.168.101.101");
-            Socket sock = new Socket(ip, 4146);
-            long time = System.currentTimeMillis();
-            long end;
+            Socket sock = new Socket(ip, 4146);       
             BufferedReader re = new BufferedReader(new InputStreamReader(sock.getInputStream()));
             PrintStream send = new PrintStream(sock.getOutputStream());
             send.println(choice + "\n");
+            long time = System.currentTimeMillis();
+            long end;
             send.flush();
             String line = new String();
 
 
             while ((line = re.readLine()) != null) {
-                if (line.equals("EXIT") == false | line.equals(null)) {
+                if (line.equals("EXIT") == false | line.equals(null) == false) {
                     System.out.println(line);
                 } else {
                     end = System.currentTimeMillis();
