@@ -121,9 +121,9 @@ public class client2 implements Runnable {
             }
 
         } catch (UnknownHostException e) {
-            e.printStackTrace();
+           // e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+           // e.printStackTrace();
         }
     }
 }
