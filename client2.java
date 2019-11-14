@@ -99,31 +99,52 @@ public class client2 implements Runnable {
     public void run() {
         try {
             InetAddress ip = InetAddress.getByName("192.168.101.101");
-            Socket sock = new Socket(ip, 4146);       
-            BufferedReader re = new BufferedReader(new InputStreamReader(sock.getInputStream()));
-            PrintStream send = new PrintStream(sock.getOutputStream());
-            send.println(choice + "\n");
+            Socket sock = new Socket(ip, 4146);
             long time = System.currentTimeMillis();
             long end;
+            BufferedReader re = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+            PrintStream send = new PrintStream(sock.getOutputStream());
+
+            send.println(choice + "\n");
             send.flush();
             String line = new String();
-
-
-            while ((line = re.readLine()) != null) {
-                if (line.equals("EXIT") == false | line.equals(null) == false) {
-                    System.out.println(line);
-                } else {
+            switch (choice) {
+                case 1:
+                case 3:
+                case 2:
+                    System.out.println(re.readLine());
                     end = System.currentTimeMillis();
-                    ttime += time - end;
+                    ttime += end - time ;
                     this.setT(ttime);
                     break;
-                }
-            }
+                case 4:
+                case 5:
+                case 6:
+                    while ((line = re.readLine()) != null) {
+                        if (line.equals("EXIT") == false) {
 
-        } catch (UnknownHostException e) {
-           // e.printStackTrace();
-        } catch (IOException e) {
-           // e.printStackTrace();
+                            System.out.println(line);
+                        } else{
+                            end = System.currentTimeMillis();
+                            ttime += end - time ;
+                            this.setT(ttime);
+                            break;
+                        }
+
+                    }
+
+                    break;
+
+                case 7:
+                    sock.close();
+                    end = System.currentTimeMillis();
+                    ttime += end - time ;
+                    this.setT(ttime);
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 }
