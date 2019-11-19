@@ -85,20 +85,7 @@ public class ServerThreaded2 implements Runnable{
                 }
                 break;
             case 2:
-               /* RuntimeMXBean rb = ManagementFactory.getRuntimeMXBean();
-                long uptime = rb.getUptime();
-                try {
-                    re.write("uptime is " + uptime/1000 + " seconds " + " \n");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    re.flush();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                break;
-		*/
+            
 			Process ps = null;
                 try {
                     ps = Runtime.getRuntime().exec("uptime");
