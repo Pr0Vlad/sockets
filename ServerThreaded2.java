@@ -135,28 +135,28 @@ public class ServerThreaded2 implements Runnable{
                 }
                 break;
             case 3:
-                 Process ps = null;
+                 Process ps1 = null;
                 try {
-                    ps = Runtime.getRuntime().exec("free");
+                    ps1 = Runtime.getRuntime().exec("free");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 output = new StringBuilder();
                 // Read the output from the command
                 try {
-                    ps.waitFor();
+                    ps1.waitFor();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                BufferedReader stdInput2 = new BufferedReader(new InputStreamReader(ps.getInputStream()));
-                String sr = null;
+                BufferedReader stdInput3 = new BufferedReader(new InputStreamReader(ps1.getInputStream()));
+                String sr2 = null;
                 while (true) {
                     try {
-                        if (!((sr = stdInput2.readLine()) != null)) break;
+                        if (!((sr2 = stdInput3.readLine()) != null)) break;
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    output.append(sr + " \n");
+                    output.append(sr2 + " \n");
                 }
                 output.append("EXIT\n");
                 try {
